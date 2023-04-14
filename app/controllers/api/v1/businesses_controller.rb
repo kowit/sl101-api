@@ -5,7 +5,8 @@ class Api::V1::BusinessesController < ApplicationController
   def index
     @businesses = Business.all
 
-    render json: @businesses
+    # render json: @businesses
+    render json: [{ name: 'Fuzzy Taco', description: 'Mexican restaurant'}]
   end
 
   # GET /businesses/1
