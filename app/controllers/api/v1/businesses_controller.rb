@@ -3,9 +3,9 @@ class Api::V1::BusinessesController < ApplicationController
 
   # GET /businesses
   def index
-    businesses = Business.all
+    @businesses = Business.all
 
-    render json: business
+    render json: @businesses
   end
 
   # GET /businesses/1
