@@ -10,6 +10,8 @@ class Api::V1::BusinessesController < ApplicationController
 
   # GET /businesses/1
   def show
+    @business = Business.find(params[:id])
+
     render json: @business
   end
 
