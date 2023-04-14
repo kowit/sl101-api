@@ -6,7 +6,10 @@ class Api::V1::BusinessesController < ApplicationController
     @businesses = Business.all
 
     # render json: @businesses
-    render json: [{ name: 'Fuzzy Taco', description: 'Mexican restaurant'}]
+    render json: [
+      { name: 'Fuzzy Taco', description: 'Mexican restaurant'},
+      { name: 'Jersey Mikes', description: 'Subs'}
+    ]
   end
 
   # GET /businesses/1
