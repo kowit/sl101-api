@@ -17,6 +17,7 @@ class Api::V1::PromotersController < ApplicationController
 
   # POST /promoter
   def create
+    logger.debug "promoter params => #{promoter_params}"
     @promoter = Promoter.new(promoter_params)
 
     if @promoter.save
