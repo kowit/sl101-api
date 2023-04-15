@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :businesses
       resources :categories
+      resources :cities
+      resources :states
     end
   end
 
