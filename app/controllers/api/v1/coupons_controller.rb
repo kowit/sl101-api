@@ -1,10 +1,12 @@
-class CouponsController < ApplicationController
-  before_action :set_coupon, only: %i[ show update destroy ]
+class API.v1::CouponsController < ApplicationController
+  before_action :set_coupon, only: %i[show update destroy]
 
   # GET /coupons
   # GET /coupons.json
   def index
     @coupons = Coupon.all
+
+    render json: @coupons
   end
 
   # GET /coupons/1
@@ -18,7 +20,7 @@ class CouponsController < ApplicationController
     @coupon = Coupon.new(coupon_params)
 
     if @coupon.save
-      render :show, status: :created, location: @coupon
+      render :show, status: :created, location: url_for([:api, :v1, @coupon])
     else
       render json: @coupon.errors, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class CouponsController < ApplicationController
   # PATCH/PUT /coupons/1.json
   def update
     if @coupon.update(coupon_params)
-      render :show, status: :ok, location: @coupon
+      render :show, status: :ok, location: url_for([:api, :v1, @coupon])
     else
       render json: @coupon.errors, status: :unprocessable_entity
     end
@@ -41,13 +43,19 @@ class CouponsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_coupon
-      @coupon = Coupon.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def coupon_params
-      params.require(:coupon).permit(:name, :discount_code, :start_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_coupon
+    @coupon = Coupon.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def coupon_params
+    params.require(:coupon).permit(
+      :name,
+      :discount_code,
+      :start_date,
+      :end_date
+    )
+  end
 end

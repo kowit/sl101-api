@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :coupons
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
       resources :users
       resources :promoters
       resources :businesses
+      resources :coupons
       resources :categories
       resources :cities
       resources :states
