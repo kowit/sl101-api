@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_17_202356) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_17_204106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_202356) do
     t.datetime "updated_at", null: false
     t.uuid "business_id", null: false
     t.datetime "end_date"
+    t.boolean "is_redeemed"
+    t.boolean "is_expired"
     t.index ["business_id"], name: "index_coupons_on_business_id"
   end
 
