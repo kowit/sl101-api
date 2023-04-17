@@ -22,7 +22,9 @@ class Api::V1::BusinessesController < ApplicationController
     @business = Business.new(business_params)
 
     if @business.save
-      render json: @business, status: :created, location: @business
+      render json: @business,
+             status: :created,
+             location: url_for([:api, :v1, @business])
     else
       render json: @business.errors, status: :unprocessable_entity
     end
@@ -37,6 +39,6 @@ class Api::V1::BusinessesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def business_params
-    params.require(:business).permit(:name, :description)
+    params.require(:business).permit(:name, :description, :promoter_id)
   end
 end
