@@ -3,9 +3,6 @@ class Api::V1::CitiesController < ApplicationController
   def index
     @cities = City.all
 
-    render json: [
-      { name: 'Tampa' },
-      { name: 'St. Petersburg' }
-    ]
+    render json: [{ name: "Tampa" }, { name: "St. Petersburg" }]
   end
 end
