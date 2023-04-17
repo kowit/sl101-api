@@ -1,4 +1,4 @@
-class API.v1::CouponsController < ApplicationController
+class Api::V1::CouponsController < ApplicationController
   before_action :set_coupon, only: %i[show update destroy]
 
   # GET /coupons
