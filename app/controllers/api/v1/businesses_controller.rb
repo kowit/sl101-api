@@ -30,7 +30,6 @@ class Api::V1::BusinessesController < ApplicationController
       render json: @business.errors, status: :unprocessable_entity
     end
   end
-  end
 
   private
 
