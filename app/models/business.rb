@@ -1,5 +1,6 @@
 class Business < ApplicationRecord
-  belongs_to :promoter, :business_type
+  belongs_to :promoter
+  belongs_to :business_type
 
   has_many :coupons
 
