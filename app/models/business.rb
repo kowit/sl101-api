@@ -3,5 +3,5 @@ class Business < ApplicationRecord
 
   has_many :coupons
 
-  validates :name, presence: true
+  # validates :name, presence: true
 end

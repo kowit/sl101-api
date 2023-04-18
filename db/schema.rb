@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_17_204106) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_012531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "business_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "businesses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -21,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_204106) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "promoter_id", null: false
+    t.uuid "business_type_id", null: false
+    t.index ["business_type_id"], name: "index_businesses_on_business_type_id"
     t.index ["promoter_id"], name: "index_businesses_on_promoter_id"
   end
 
@@ -63,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_17_204106) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "businesses", "business_types"
   add_foreign_key "businesses", "promoters"
   add_foreign_key "coupons", "businesses"
 end
