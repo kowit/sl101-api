@@ -17,9 +17,10 @@ class Api::V1::BusinessesController < ApplicationController
 
   # POST /business
   def create
-    puts "business_params ====> #{business_params}"
+    puts "\n\nbusiness_params ==> #{business_params}"
 
     @business = Business.new(business_params)
+    @business.description =  if (params[:description]) === ''
 
     if @business.save
       render json: @business,
