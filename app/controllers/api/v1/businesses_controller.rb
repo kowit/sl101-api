@@ -20,7 +20,8 @@ class Api::V1::BusinessesController < ApplicationController
     puts "\n\nbusiness_params ==> #{business_params}"
 
     @business = Business.new(business_params)
-    @business.description = "" if (params[:description].nil?)
+
+    puts "\n\n@business => #{@business}"
 
     if @business.save
       render json: @business,
