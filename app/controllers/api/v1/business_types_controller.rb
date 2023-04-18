@@ -5,6 +5,8 @@ class Api::V1::BusinessTypesController < ApplicationController
   # GET /business_types.json
   def index
     @business_types = BusinessType.all
+
+    render json: @business_types
   end
 
   # GET /business_types/1
