@@ -20,7 +20,7 @@ class Api::V1::BusinessesController < ApplicationController
     puts "\n\nbusiness_params ==> #{business_params}"
 
     @business = Business.new(business_params)
-    @business.description =  if (params[:description]) === ''
+    @business.description = "" if (params[:description].nil?)
 
     if @business.save
       render json: @business,
@@ -29,6 +29,7 @@ class Api::V1::BusinessesController < ApplicationController
     else
       render json: @business.errors, status: :unprocessable_entity
     end
+  end
   end
 
   private
