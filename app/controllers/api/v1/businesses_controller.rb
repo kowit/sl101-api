@@ -39,6 +39,12 @@ class Api::V1::BusinessesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def business_params
-    params.require(:business).permit(:name, :description, :promoter_id)
+    params.require(:business).permit(
+      :name,
+      :description,
+      :promoter_id,
+      :business_type_id,
+      :phone_num
+    )
   end
 end
