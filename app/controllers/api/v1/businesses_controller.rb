@@ -10,9 +10,15 @@ class Api::V1::BusinessesController < ApplicationController
 
   # GET /businesses/1
   def show
-    @business = Business.find(params[:id])
+    puts "get business params => #{params}"
 
-    render json: @business
+    @business = Business.find(params[:id])
+    @promoter = Promoter.find(@business.promoter_id)
+    business_payload = { promoter: @promoter, business: @business }
+
+    puts "payload ==> #{business_payload}"
+
+    render json: business_payload
   end
 
   # POST /business
