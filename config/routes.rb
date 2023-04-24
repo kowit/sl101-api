@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post "/signup", to: "sessions#create"
+
   namespace :api do
     namespace :v1 do
       resources :business_types

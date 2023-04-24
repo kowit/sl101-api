@@ -22,6 +22,7 @@ class Api::V1::PromotersController < ApplicationController
 
     @promoter = Promoter.new(promoter_params)
 
+    @promoter.first_name = "" if (params[:first_name].nil?)
     @promoter.last_name = "" if (params[:last_name].nil?)
 
     if @promoter.save
