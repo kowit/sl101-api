@@ -1,21 +1,24 @@
-class Api::V1::BusinessesController < ApplicationController
+class Api::V1::Cms::BusinessesController < ApplicationController
   before_action :set_business, only: %i[show update destroy]
-
-  # GET /businesses
-  def index
-    @businesses = Business.all
-
-    render json: @businesses
-  end
 
   # GET /businesses/1
   def show
     @business = Business.find(params[:id])
-    @promoter = Promoter.find(@business.promoter_id)
+    @promoter = Promoter.find(business.promoter_id)
 
-    business_payload = { promoter: @promoter, business: @business }
+    business_payload = [
+      id: @promoter.id,
+      first_name: @promoter.first_name,
+      last_name: @promoter.last_name,
+      gender: @promoter.gender,
+      businesses: [@business.attributes.except("created_at", "updated_at")]
+    ]
 
-    render json: business_payload
+    if business_payload
+      render json: business_payload
+    else
+      render json: business_payload.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /business

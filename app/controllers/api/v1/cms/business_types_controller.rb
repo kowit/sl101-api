@@ -1,4 +1,4 @@
-class Api::V1::BusinessTypesController < ApplicationController
+class Api::V1::Cms::BusinessTypesController < ApplicationController
   before_action :set_business_type, only: %i[show update destroy]
 
   # GET /business_types

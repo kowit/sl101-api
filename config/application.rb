@@ -20,5 +20,9 @@ module RubyRailsPostgres
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.api_only = true
+
+    config.session_store :cookie_store, key: "_studentlife101_promoter"
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end

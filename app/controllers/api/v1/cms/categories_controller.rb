@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ApplicationController
+class Api::V1::Cms::CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.all

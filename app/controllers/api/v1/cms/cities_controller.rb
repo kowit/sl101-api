@@ -1,4 +1,4 @@
-class Api::V1::CitiesController < ApplicationController
+class Api::V1::Cms::CitiesController < ApplicationController
   # GET /cities
   def index
     @cities = City.all
