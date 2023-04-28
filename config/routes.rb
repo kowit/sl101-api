@@ -27,8 +27,8 @@ Rails.application.routes.draw do
         post "/signout", to: "sessions#signout"
 
         resources :promoters
-        resources :businesses, only: %i[show new edit delete]
-        resources :coupons, only: %i[show new edit delete]
+        resources :businesses
+        resources :coupons
 
         # Meta
         resources :categories, only: %i[index show edit delete]
