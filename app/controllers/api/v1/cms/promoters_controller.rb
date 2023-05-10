@@ -1,13 +1,27 @@
 class Api::V1::Cms::PromotersController < ApplicationController
   before_action :set_promoter, only: %i[show update destroy]
 
+  def index
+    promoters = Promoter.all
+
+    render json: promoters
+  end
+
   # GET /promoters/1
   def show
     @promoter = Promoter.find(params[:id])
     @business = Business.find_by(promoter_id: @promoter.id)
     @coupons = @business.coupons
 
-    render json: [
+    # render json: [{
+    #   id: @promoter.id,
+    #   firstName: @promoter.first_name,
+    #   lastName: @promoter.last_name,
+    #   phoneNum: @promoter.phone_num,
+    #   businesses: []
+    # }]
+
+    render json: [{
              id: @promoter.id,
              firstName: @promoter.first_name,
              lastName: @promoter.last_name,
@@ -22,7 +36,7 @@ class Api::V1::Cms::PromotersController < ApplicationController
                  coupons: @coupons
                }
              ]
-           ]
+           }]
   end
 
   # POST /promoter
@@ -39,8 +53,8 @@ class Api::V1::Cms::PromotersController < ApplicationController
 
     if @promoter.save
       render json: @promoter,
-             status: :created,
-             location: url_for([:api, :v1, @promoter])
+        status: :created,
+        location: url_for([:api, :v1, @promoter])
     else
       render json: @promoter.errors, status: :unprocessable_entity
     end
@@ -71,6 +85,6 @@ class Api::V1::Cms::PromotersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def promoter_params
-    params.require(:promoter).permit(:email, :first_name, :last_name, :password)
+    params.require(:promoter).permit(:email, :first_name, :last_name, :phone_num, :password)
   end
 end

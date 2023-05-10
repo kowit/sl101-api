@@ -18,6 +18,10 @@ gem "rack-cors"
 gem "awesome_print"
 gem "bcrypt", "~> 3.1.7"
 
+# gem 'sorbet', :group => :development
+# gem 'sorbet-runtime'
+# gem 'tapioca', require: false, :group => :development
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end

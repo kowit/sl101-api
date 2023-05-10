@@ -23,10 +23,11 @@ class Api::V1::Cms::BusinessesController < ApplicationController
 
   # POST /business
   def create
-    puts "\n\nbusiness_params ==> #{business_params}"
+    ap "\n\nbusiness_params ==> #{business_params}"
 
     @business = Business.new(business_params)
     @business.description = "" if params[:description].nil?
+    @business.phone_num = "" if params[:phone_num].nil?
 
     if @business.save
       render json: @business,
@@ -50,6 +51,7 @@ class Api::V1::Cms::BusinessesController < ApplicationController
       :name,
       :description,
       :promoter_id,
+      :website_url,
       :business_type_id,
       :phone_num
     )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_214156) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_031010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_214156) do
     t.uuid "promoter_id", null: false
     t.uuid "business_type_id", null: false
     t.string "phone_num"
+    t.string "website_url"
     t.index ["business_type_id"], name: "index_businesses_on_business_type_id"
     t.index ["promoter_id"], name: "index_businesses_on_promoter_id"
   end
@@ -66,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_214156) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "gender"
+    t.string "phone_num"
   end
 
   create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

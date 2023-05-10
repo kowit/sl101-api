@@ -4,5 +4,7 @@ class Business < ApplicationRecord
 
   has_many :coupons, dependent: :delete_all
 
-  validates :name, :phone_num, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :phone_num, uniqueness: true
+  validates :website_url, uniqueness: true
 end

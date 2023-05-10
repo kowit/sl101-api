@@ -6,6 +6,8 @@ class Api::V1::Cms::BusinessTypesController < ApplicationController
   def index
     @business_types = BusinessType.all
 
+    puts "~bt => #{@business_types}"
+
     render json: @business_types
   end
 
