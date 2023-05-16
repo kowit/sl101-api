@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_031010) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_13_010437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "business_hours", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "business_id", null: false
+    t.integer "day_of_week"
+    t.time "opening_time"
+    t.time "closing_time"
+    t.timestamptz "time_zone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_business_hours_on_business_id"
+  end
 
   create_table "business_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -56,6 +67,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_031010) do
     t.datetime "end_date"
     t.boolean "is_redeemed"
     t.boolean "is_expired"
+    t.integer "max_redemptions"
+    t.string "start_time"
+    t.datetime "expire_date"
+    t.string "expire_time"
+    t.string "promo_code"
+    t.integer "impressions"
     t.index ["business_id"], name: "index_coupons_on_business_id"
   end
 
@@ -76,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_031010) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "business_hours", "businesses"
   add_foreign_key "businesses", "business_types"
   add_foreign_key "businesses", "promoters"
   add_foreign_key "coupons", "businesses"

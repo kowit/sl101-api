@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  business: one
+  day_of_week: 1
+  opening_time: 2023-05-12 17:58:52
+  closing_time: 2023-05-12 17:58:52
+  time_zone: 
+
+two:
+  business: two
+  day_of_week: 1
+  opening_time: 2023-05-12 17:58:52
+  closing_time: 2023-05-12 17:58:52
+  time_zone: 

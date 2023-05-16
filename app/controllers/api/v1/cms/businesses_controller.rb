@@ -23,16 +23,22 @@ class Api::V1::Cms::BusinessesController < ApplicationController
 
   # POST /business
   def create
-    ap "\n\nbusiness_params ==> #{business_params}"
-
     @business = Business.new(business_params)
-    @business.description = "" if params[:description].nil?
-    @business.phone_num = "" if params[:phone_num].nil?
 
     if @business.save
-      render json: @business,
-             status: :created,
-             location: url_for([:api, :v1, @business])
+      puts "~business saved => #{@business}"
+
+      promoter = Promoter.find_by(id: business_params[:promoter_id])
+
+      render json: {
+        promoter: {
+          id: promoter.id,
+          firstName: promoter.first_name,
+          lastName: promoter.last_name,
+          email: promoter.email,
+          businesses: [@business]
+         }
+      }
     else
       render json: @business.errors, status: :unprocessable_entity
     end
@@ -48,6 +54,8 @@ class Api::V1::Cms::BusinessesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def business_params
     params.require(:business).permit(
+      :avatar,
+      :logo,
       :name,
       :description,
       :promoter_id,

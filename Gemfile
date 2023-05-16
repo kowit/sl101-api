@@ -23,6 +23,7 @@ gem "bcrypt", "~> 3.1.7"
 # gem 'tapioca', require: false, :group => :development
 
 group :development, :test do
+  gem 'aws-sdk-s3', '~> 1.122'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 

@@ -3,6 +3,15 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.active_storage.service = :amazon
+  config.aws_credentials = {
+    access_key_id: ENV['S3_ACCESS_KEY_ID'],
+    secret_access_key: ENV['S3_SECRET_ACCESS_KEY'],
+    region: ENV['S3_REGION']
+  }
+
+  config.aws_bucket = ENV['S3_BUCKET_NAME']
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

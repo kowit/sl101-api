@@ -17,10 +17,14 @@ class Api::V1::Cms::CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
+    puts "~~PARAMS => #{params}"
     @coupon = Coupon.new(coupon_params)
 
+    ap @coupon
+
+
     if @coupon.save
-      render :show, status: :created, location: url_for([:api, :v1, @coupon])
+      render json: @coupon, status: :created
     else
       render json: @coupon.errors, status: :unprocessable_entity
     end
@@ -52,10 +56,15 @@ class Api::V1::Cms::CouponsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def coupon_params
     params.require(:coupon).permit(
+      :business_id,
       :name,
       :discount_code,
       :start_date,
-      :end_date
+      :start_time,
+      :end_date,
+      :max_redemptions,
+      :expire_time,
+      :expire_date
     )
   end
 end

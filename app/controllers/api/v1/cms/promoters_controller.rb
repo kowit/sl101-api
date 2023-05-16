@@ -13,18 +13,12 @@ class Api::V1::Cms::PromotersController < ApplicationController
     @business = Business.find_by(promoter_id: @promoter.id)
     @coupons = @business.coupons
 
-    # render json: [{
-    #   id: @promoter.id,
-    #   firstName: @promoter.first_name,
-    #   lastName: @promoter.last_name,
-    #   phoneNum: @promoter.phone_num,
-    #   businesses: []
-    # }]
-
-    render json: [{
+    render json: {
+      promoter: {
              id: @promoter.id,
              firstName: @promoter.first_name,
              lastName: @promoter.last_name,
+             email: @promoter.email,
              businesses: [
                {
                  id: @business.id,
@@ -33,10 +27,12 @@ class Api::V1::Cms::PromotersController < ApplicationController
                  name: @business.name,
                  description: @business.description,
                  phoneNum: @business.phone_num,
-                 coupons: @coupons
+                 coupons: @coupons,
+                 websiteUrl: @business.website_url
                }
              ]
-           }]
+           }
+          }
   end
 
   # POST /promoter
