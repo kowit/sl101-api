@@ -14,7 +14,6 @@ class Api::V1::Cms::PromotersController < ApplicationController
     @coupons = @business.coupons
 
     render json: {
-      promoter: {
              id: @promoter.id,
              firstName: @promoter.first_name,
              lastName: @promoter.last_name,
@@ -31,7 +30,6 @@ class Api::V1::Cms::PromotersController < ApplicationController
                  websiteUrl: @business.website_url
                }
              ]
-           }
           }
   end
 

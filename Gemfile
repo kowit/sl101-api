@@ -24,6 +24,7 @@ gem "bcrypt", "~> 3.1.7"
 
 group :development, :test do
   gem 'aws-sdk-s3', '~> 1.122'
+  gem 'dotenv-rails'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 

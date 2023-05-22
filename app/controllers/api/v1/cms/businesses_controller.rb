@@ -1,6 +1,17 @@
 class Api::V1::Cms::BusinessesController < ApplicationController
   before_action :set_business, only: %i[show update destroy]
 
+  def get_business_by_promoter_id
+    promoter_businesses = Business.find_by(promoter_id: params[:id])
+
+    if promoter_businesses
+      render json: promoter_businesses
+    else
+      render json: business_payload.errors, status: :unprocessable_entity
+    end
+  end
+
+
   # GET /businesses/1
   def show
     @business = Business.find(params[:id])
@@ -24,6 +35,8 @@ class Api::V1::Cms::BusinessesController < ApplicationController
   # POST /business
   def create
     @business = Business.new(business_params)
+
+    @business.description = "" if (params[:description].nil?)
 
     if @business.save
       puts "~business saved => #{@business}"

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
         post "/signin", to: "sessions#signin"
         post "/signout", to: "sessions#signout"
 
+        get "/get-business-by-promoter-id/:id", to: "businesses#get_business_by_promoter_id"
+
         resources :promoters
         resources :businesses
         resources :coupons
