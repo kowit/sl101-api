@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_124220) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_23_194040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -104,6 +104,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124220) do
     t.index ["business_id"], name: "index_coupons_on_business_id"
   end
 
+  create_table "impressions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "count"
+    t.uuid "coupon_id", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coupon_id"], name: "index_impressions_on_coupon_id"
+    t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
   create_table "promoters", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -121,10 +131,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_124220) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "business_hours", "businesses"
   add_foreign_key "businesses", "business_types"
   add_foreign_key "businesses", "promoters"
   add_foreign_key "coupons", "businesses"
+  add_foreign_key "impressions", "coupons"
+  add_foreign_key "impressions", "users"
 end
