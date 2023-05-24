@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_194040) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_133712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -79,6 +79,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_194040) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "check_ins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "count"
+    t.uuid "business_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_check_ins_on_business_id"
+  end
+
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -144,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_194040) do
   add_foreign_key "business_hours", "businesses"
   add_foreign_key "businesses", "business_types"
   add_foreign_key "businesses", "promoters"
+  add_foreign_key "check_ins", "businesses"
   add_foreign_key "coupons", "businesses"
   add_foreign_key "impressions", "coupons"
   add_foreign_key "impressions", "users"
