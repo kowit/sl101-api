@@ -22,13 +22,11 @@ class Api::V1::Cms::RegistrationsController < ApplicationController
       ap "#{session[:promoter_id]}"
 
       render json: {
-        promoter: {
-          id: promoter.id,
-          firstName: promoter.first_name,
-          lastName: promoter.last_name,
-          email: promoter.email,
-          businesses: []
-         }
+        id: promoter.id,
+        firstName: promoter.first_name,
+        lastName: promoter.last_name,
+        email: promoter.email,
+        businesses: []
       }
     else
       render json: payload.errors, status: :unprocessable_entity
