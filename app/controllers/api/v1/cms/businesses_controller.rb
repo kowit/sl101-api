@@ -2,7 +2,10 @@ class Api::V1::Cms::BusinessesController < ApplicationController
   before_action :set_business, only: %i[show update destroy]
 
   def get_business_by_promoter_id
+    puts params
     promoter_businesses = Business.find_by(promoter_id: params[:id])
+
+    puts "~~~~~~~~ -> #{promoter_businesses}"
 
     if promoter_businesses
       render json: promoter_businesses
