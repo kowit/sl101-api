@@ -12,7 +12,7 @@ class Api::V1::Analytics::BusinessesController < ApplicationController
   end
 
   def subscribers_count
-    render json: { subscribersCount: 144 }
+    render json: { subscribersCount: 450 }
   end
 
 

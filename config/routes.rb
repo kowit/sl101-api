@@ -42,6 +42,10 @@ Rails.application.routes.draw do
 
       namespace :cms do
         get "/get-business-by-promoter-id/:id", to: "businesses#get_business_by_promoter_id"
+        get "/businesses/get-business-name", to: "businesses#get_business_name"
+        get "/businesses/get-phone-num/:id", to: "businesses#get_phone_num"
+        get "/businesses/get-website-url/:id", to: "businesses#get_website_url"
+        get "/businesses/get-coupons/:id", to: "businesses#get_coupons"
 
         resources :promoters
         resources :businesses

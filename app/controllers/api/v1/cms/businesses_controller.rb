@@ -1,6 +1,16 @@
 class Api::V1::Cms::BusinessesController < ApplicationController
   before_action :set_business, only: %i[show update destroy]
 
+  def get_business_name
+    promoter_business = Business.find_by(promoter_id: params[:id])
+
+    if promoter_business
+      render json: { name: promoter_business.name }
+    else
+      render json: { message: "Could not get business name" }, status: :unprocessable_entity
+    end
+  end
+
   def get_business_by_promoter_id
     puts "params => #{params}"
     promoter_business = Business.find_by(promoter_id: params[:id])

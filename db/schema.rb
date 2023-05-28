@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_24_133712) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_28_210200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -108,7 +108,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_133712) do
     t.datetime "expire_date"
     t.string "expire_time"
     t.string "promo_code"
-    t.integer "impressions"
     t.index ["business_id"], name: "index_coupons_on_business_id"
   end
 
