@@ -1,4 +1,4 @@
-class Api::V1::Cms::RegistrationsController < ApplicationController
+class Api::V1::Auth::RegistrationsController < ApplicationController
   def new
     @promoter = Promoter.new
   end

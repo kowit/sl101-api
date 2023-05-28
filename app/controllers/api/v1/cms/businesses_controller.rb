@@ -2,15 +2,21 @@ class Api::V1::Cms::BusinessesController < ApplicationController
   before_action :set_business, only: %i[show update destroy]
 
   def get_business_by_promoter_id
-    puts params
-    promoter_businesses = Business.find_by(promoter_id: params[:id])
+    puts "params => #{params}"
+    promoter_business = Business.find_by(promoter_id: params[:id])
 
-    puts "~~~~~~~~ -> #{promoter_businesses}"
-
-    if promoter_businesses
-      render json: promoter_businesses
+    if promoter_business
+      render json: {
+        id: promoter_business.id,
+        name: promoter_business.name,
+        createdAt: promoter_business.created_at,
+        updatedAt: promoter_business.updated_at,
+        businessTypeId: promoter_business.business_type_id,
+        phoneNum: promoter_business.phone_num,
+        websiteUrl: promoter_business.website_url
+      }
     else
-      render json: business_payload.errors, status: :unprocessable_entity
+      render json: promoter_business.errors, status: :unprocessable_entity
     end
   end
 
@@ -47,13 +53,11 @@ class Api::V1::Cms::BusinessesController < ApplicationController
       promoter = Promoter.find_by(id: business_params[:promoter_id])
 
       render json: {
-        promoter: {
-          id: promoter.id,
-          firstName: promoter.first_name,
-          lastName: promoter.last_name,
-          email: promoter.email,
-          businesses: [@business]
-         }
+        id: promoter.id,
+        firstName: promoter.first_name,
+        lastName: promoter.last_name,
+        email: promoter.email,
+        businesses: [@business]
       }
     else
       render json: @business.errors, status: :unprocessable_entity
@@ -77,7 +81,7 @@ class Api::V1::Cms::BusinessesController < ApplicationController
       :promoter_id,
       :website_url,
       :business_type_id,
-      :phone_num
+      :phone_num,
     )
   end
 end

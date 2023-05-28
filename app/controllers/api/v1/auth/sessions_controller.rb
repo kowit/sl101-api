@@ -1,4 +1,4 @@
-class Api::V1::Cms::SessionsController < ApplicationController
+class Api::V1::Auth::SessionsController < ApplicationController
   def signin
     puts "params ===> #{params}"
 

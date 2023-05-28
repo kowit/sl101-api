@@ -17,23 +17,36 @@ Rails.application.routes.draw do
     end
   end
 
-  # API for Promoters (Student Life 101 - Promoter Dashboard)
+  # API for Promoters (Student Life - Promoter Dashboard)
   namespace :api do
     namespace :v1 do
-      namespace :cms do
-
-        # Authentication
+      namespace :auth do
         post "/signup", to: "registrations#signup"
         post "/signin", to: "sessions#signin"
         post "/signout", to: "sessions#signout"
+      end
 
+      namespace :analytics do
+        # Businesses
+        get "/businesses/phone-clicks", to: "businesses#phone_clicks"
+        get "/businesses/website-clicks", to: "businesses#website_clicks"
+        get "/businesses/business-clicks", to: "businesses#business_clicks"
+        get "/businesses/subscribers-count", to: "businesses#subscribers_count"
+        get "/businesses/business-clicks-over-time", to: "businesses#business_clicks_over_time"
+
+        # Coupons
+        get "/coupon/impressions", to: "coupons#impressions"
+        get "/coupon/clicks", to: "coupons#clicks"
+        get "/coupon/redemptions", to: "coupons#redemptions"
+      end
+
+      namespace :cms do
         get "/get-business-by-promoter-id/:id", to: "businesses#get_business_by_promoter_id"
 
         resources :promoters
         resources :businesses
         resources :coupons
 
-        # Meta
         resources :categories, only: %i[index show edit delete]
         resources :business_types, only: %i[index show edit delete]
         resources :cities, only: %i[index show edit delete]

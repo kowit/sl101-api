@@ -46,9 +46,7 @@ class Api::V1::Cms::PromotersController < ApplicationController
     @promoter.password = params[:password]
 
     if @promoter.save
-      render json: @promoter,
-        status: :created,
-        location: url_for([:api, :v1, @promoter])
+      render json: @promoter, status: :created
     else
       render json: @promoter.errors, status: :unprocessable_entity
     end
