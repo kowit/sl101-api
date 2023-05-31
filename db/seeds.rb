@@ -28,9 +28,26 @@ business = Business.create!({
   :website_url => "https://truecraves.com/products/"
 })
 
-10.times do
+5.times do
   coupon = Coupon.create!({
     :name => "20% off first on order.",
+    :discount_code => "XYZ123",
+    :start_date => "06/01/2023",
+    :business_id => business.id,
+    :end_date => "08/30/23",
+    :is_redeemed => false,
+    :is_expired => false,
+    :max_redemptions => 3,
+    :start_time => "",
+    :expire_date => "08/30/23",
+    :expire_time => "",
+    :promo_code => "XYZABC",
+  })
+end
+
+5.times do
+  coupon = Coupon.create!({
+    :name => "BOGO Tacos",
     :discount_code => "XYZ123",
     :start_date => "06/01/2023",
     :business_id => business.id,

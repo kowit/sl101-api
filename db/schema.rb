@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_28_210200) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_003411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -117,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_28_210200) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "business_id", null: false
+    t.index ["business_id"], name: "index_impressions_on_business_id"
     t.index ["coupon_id"], name: "index_impressions_on_coupon_id"
     t.index ["user_id"], name: "index_impressions_on_user_id"
   end
@@ -153,6 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_28_210200) do
   add_foreign_key "businesses", "promoters"
   add_foreign_key "check_ins", "businesses"
   add_foreign_key "coupons", "businesses"
+  add_foreign_key "impressions", "businesses"
   add_foreign_key "impressions", "coupons"
   add_foreign_key "impressions", "users"
 end

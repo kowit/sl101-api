@@ -1,6 +1,12 @@
 class Api::V1::Cms::CouponsController < ApplicationController
   before_action :set_coupon, only: %i[show update destroy]
 
+  def get_coupons_by_business
+     @coupons = Coupon.where(business_id: params[:id])
+
+    render json: @coupons
+  end
+
   # GET /coupons
   # GET /coupons.json
   def index
@@ -12,6 +18,9 @@ class Api::V1::Cms::CouponsController < ApplicationController
   # GET /coupons/1
   # GET /coupons/1.json
   def show
+    @coupons = Coupon.where(business_id: params[:id])
+
+    render json: @coupons
   end
 
   # POST /coupons

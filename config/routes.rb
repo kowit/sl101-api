@@ -47,6 +47,8 @@ Rails.application.routes.draw do
         get "/businesses/get-website-url", to: "businesses#get_website_url"
         get "/businesses/get-coupons", to: "businesses#get_coupons"
 
+        get "/coupons/get-coupons-by-business", to: "coupons#get_coupons_by_business"
+
         resources :promoters
         resources :businesses
         resources :coupons
