@@ -4,15 +4,15 @@ class Api::V1::Analytics::BusinessesController < ApplicationController
   end
 
   def website_clicks
-      render json: { websiteClicks: 4000 }
+      render json: { websiteClicks: 242 }
   end
 
   def business_clicks
-    render json: { businessClicks: 10000 }
+    render json: { businessClicks: 210 }
   end
 
   def subscribers_count
-    render json: { subscribersCount: 3000 }
+    render json: { subscribersCount: 117 }
   end
 
 

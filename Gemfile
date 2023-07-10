@@ -16,11 +16,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "rack-cors"
 gem "awesome_print"
+gem 'jwt'
 gem "bcrypt", "~> 3.1.7"
-
-# gem 'sorbet', :group => :development
-# gem 'sorbet-runtime'
-# gem 'tapioca', require: false, :group => :development
 
 group :development, :test do
   gem 'aws-sdk-s3', '~> 1.122'

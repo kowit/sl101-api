@@ -21,8 +21,26 @@ module RubyRailsPostgres
 
     config.api_only = true
 
-    config.session_store :cookie_store, key: "_studentlife101_promoter"
+    # config.session_store :cookie_store, key: "_studentlife_promoter"
+    # # Required for all session management (regardless of session_store)
+    # config.middleware.use ActionDispatch::Cookies
+    # config.middleware.use ActionDispatch::Session::CookieStore
+    # config.middleware.use config.session_store, config.session_options
+
+    # This also configures session_options for use below
+    # config.session_store :cookie_store, key: '_studentlife_session'
+
+    # # Required for all session management (regardless of session_store)
+    # config.middleware.use ActionDispatch::Cookies
+
+    # config.middleware.use config.session_store, config.session_options
+
+    # config.session_store :cookie_store, key: '_interslice_session'
+    # config.middleware.use ActionDispatch::Cookies
+    # config.middleware.use config.session_store, config.session_options
+
     config.middleware.use ActionDispatch::Cookies
-    config.middleware.use config.session_store, config.session_options
+    config.middleware.use ActionDispatch::Session::CookieStore
+
   end
 end

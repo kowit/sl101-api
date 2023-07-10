@@ -7,6 +7,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+user = User.create({
+  email: "elizabeth@gmail.com",
+  first_name: "Elizabeth",
+  last_name: "Aidenburg"
+})
+
 promoter = Promoter.create!(
   {
     :email => "janedoe@gmail.com",
@@ -59,5 +65,14 @@ end
     :expire_date => "08/30/23",
     :expire_time => "",
     :promo_code => "XYZABC",
+  })
+end
+
+
+100.times do
+  impression = Impression.create({
+    user_id: user.id,
+    coupon_id: Coupon.first.id
+    count: 1
   })
 end

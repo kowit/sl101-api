@@ -1,4 +1,4 @@
-class Api::V1::Cms::PromotersController < ApplicationController
+class Api::V1::PromotersController < ApplicationController
   before_action :set_promoter, only: %i[show update destroy]
 
   def index
@@ -9,13 +9,8 @@ class Api::V1::Cms::PromotersController < ApplicationController
 
   # GET /promoters/1
   def show
-    session.keys.each do |key|
-      p "~PROMOTER controller #{key} => #{session[key]}"
-    end
-
+    puts "~params => #{params}"
     @promoter = Promoter.find_by(id: params[:id])
-
-    ap "~~promoter found #{@promoter}"
 
     if (@promoter)
       @business = Business.find_by(promoter_id: @promoter.id)
